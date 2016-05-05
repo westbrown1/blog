@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
-use App\User;
+
+use App\Category;
 use Session;
 
-class UserController extends Controller
+class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,18 +23,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('users.create');
-    }
+        // display a view of all our categories
+        // also has a form to create a new category, create function below deleted
+        $categories = Category::all();
+        return view('categories.index')->withCategories($categories);
+    }    
 
     /**
      * Store a newly created resource in storage.
@@ -38,22 +38,14 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, array(
-            'name' => 'required|alpha_dash|min:4|unique:users|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|alpha_dash|unique:users|confirmed'
+                'name' => 'required|max:255',                
             ));
+        $category = new Category;
 
-        $user = new User;
-
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = $request->password;
-
-        $user->save();
-
-        Session::flash('success', 'You have successfully registerd!');
-
-        return redirect()->route('users.show', $user->id);
+        $category->name = $request->name;
+        $category->save();
+        Session::flash('success', 'New Category was created');
+        return redirect()->route('categories.index');
     }
 
     /**

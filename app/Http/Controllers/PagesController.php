@@ -19,4 +19,8 @@ class PagesController extends Controller
     {
     	return view('pages.contact');
     }
+    public function getDropzone()
+    {
+        return view('pages.dropzone');
+    }
 }	

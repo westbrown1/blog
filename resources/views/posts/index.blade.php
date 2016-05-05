@@ -34,9 +34,10 @@
 						<tr>
 							<th>{{ $post->id }} </th>
 							<td>{{ $post->title }} </td>
-							<td>{{ substr($post->body, 0, 50) }} {{ strlen($post->body) > 50 ? '...' : ''}} </td>
+							<td>{{ substr($post->body, 0, 200) }} {{ strlen($post->body) > 200 ? '...' : ''}} </td>
 							<td>{{ date('F j, Y g:i a', strtotime($post->created_at)) }} </td>
-							<td><a href="{{route('posts.show', $post->id)}} " class="btn btn-default btn-sm">View</a> <a href="{{route('posts.edit', $post->id)}} " class="btn btn-default btn-sm">Edit</a> </td>
+							<td><a href="{{route('posts.show', $post->id)}} " class="btn btn-default btn-sm">View</a></td><br>
+							<td><a href="{{route('posts.edit', $post->id)}} " class="btn btn-default btn-sm">Edit</a></td>
 						</tr>
 		 	 		@endforeach
 		 	 	</tbody>

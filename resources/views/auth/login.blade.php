@@ -17,15 +17,17 @@
  				{!! Form::open() !!}
  				
     				{{Form::label('email', 'Email:')}}
-    				{{Form::text('email', null, ['class' => 'form-control'])}}
-
+    				{{Form::email('email', null, ['class' => 'form-control'])}}
+					
     				{{Form::label('password', 'Password:')}}
-    				{{Form::text('password', null, ['class' => 'form-control'])}}
-
+    				{{Form::password('password', ['class' => 'form-control'])}}
+					<br>
 					{{Form::label('remember', 'Remember Me')}}
     				{{Form::checkbox('remember')}}
 
-    				{{Form::submit('Login', ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top:20px;'])}}
+    				{{Form::submit('Login', ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top:10px;'])}}
+					<br>
+    				<p><a href="{{ url('password/reset')}}">Forgot Password?</a></p>
     			{!!Form::close()!!}
 			</div><!-- /panel-body -->
 	 	</div><!-- /panel panel-primary -->		

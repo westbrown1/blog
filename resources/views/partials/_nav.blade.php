@@ -14,18 +14,22 @@
         <li class="{{Request::is('about') ? 'active' : ''}}"><a href="/about">About Us</a></li>
         <li class="{{Request::is('contact') ? 'active' : ''}}"><a href="/contact">Contact Us</a></li>
         <li class="{{Request::is('blog') ? 'active' : ''}}"><a href="/blog">Blog</a></li>
+
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" haspopup+"true" aria-expanded="false">My Account <span class="caret"></span></a>
           <ul class="dropdown-menu drp-dwn">
-            <li><a href="#">Posts</a></li>
-            <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Logout</a></li>
+            <li><a href="{{route('posts.index')}} ">Posts</a></li>
+            <li><a href="{{route('categories.index')}} ">Categories</a></li>
+            <li><a href="{{ route('logout') }} ">Logout</a></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="{{Request::is('/auth/register') ? 'active' : ''}} "><a href="/auth/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li class="{{Request::is('/auth/login') ? 'active' : ''}} "><a href="/auth/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      @if (Auth::check())
+        @else          
+          <li class="{{Request::is('auth/login') ? 'active' : ''}}"><a href="/auth/login"><span class="glyphicon glyphicon-user"></span> log In</a></li>
+          <li class="{{Request::is('auth/register') ? 'active' : ''}}"><a href="/auth/register"><span class="glyphicon glyphicon-log-in"></span> Sign Up</a></li>
+        @endif
       </ul>
     </div>
   </div>
