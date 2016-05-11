@@ -32,9 +32,10 @@ Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
 Route::get('blog/{slug}', ['uses' => 'BlogController@getSingle', 'as' => 'blog.single'])->where('slug', '[\w\d\-\_]+');
 Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
-Route::get('dropzone', 'PagesController@getDropzone');
-Route::get('contact', 'PagesController@getContact');
 Route::get('about', 'PagesController@getAbout');
+Route::get('contact', 'PagesController@getContact');
+Route::get('image', 'PagesController@getImage');
+Route::get('uploadimage', 'PagesController@getUploadimage');
 Route::get('/', 'PagesController@getIndex');
 Route::resource('posts', 'PostController');
 

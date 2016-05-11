@@ -26,7 +26,7 @@
 		 	 </table>
 		 </div><!-- /col-md-8 -->
 		 <div class="col-md-3">
-		 	<div class="well">
+		 	<div class="well" style="margin-top: 35px;">
 		 		{!! Form::open(['route' => 'categories.store']) !!}
 				<h2>New Category</h2>
 				{{Form::label('name', 'Name:')}}
