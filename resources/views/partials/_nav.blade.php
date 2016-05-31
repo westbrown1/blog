@@ -21,8 +21,6 @@
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" haspopup+"true" aria-expanded="false">My Account <span class="caret"></span></a>
           <ul class="dropdown-menu drp-dwn">
-            <li><a href="/uploadimage" >Upload Image</a></li>
-            <li><a href="/image">Images</a></li>
             <li><a href="{{route('posts.index')}} ">Posts</a></li>
             <li><a href="{{route('categories.index')}} ">Categories</a></li>
             <li><a href="{{ route('logout') }} ">Logout</a></li>

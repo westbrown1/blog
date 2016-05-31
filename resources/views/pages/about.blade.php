@@ -7,26 +7,20 @@
 <div class="row">
 <!-- row -->
 <div class="row">
-	 <!-- col-md-12 -->
-	 <div class="col-md-12">
-	 	 <center><h3>About Us</h3></center>
-	 	 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam beatae, libero harum architecto ipsa consectetur ad dolores repellendus dicta culpa nisi nam reprehenderit, ut, velit totam aut obcaecati commodi. Omnis illo corporis, consequuntur deleniti fugit accusantium sunt voluptatum ullam saepe fugiat voluptatibus, vitae. Laborum fugit accusamus mollitia suscipit laudantium cum numquam hic tenetur eligendi dolorem sint totam fugiat dolore, nisi rem recusandae? Odit, asperiores! Accusantium quae expedita optio explicabo tempora quisquam autem, asperiores, provident delectus ad aspernatur. Doloremque aspernatur aliquam nulla alias, repellat laborum dolore eligendi harum, optio soluta assumenda beatae illum ad cumque pariatur amet voluptatum, blanditiis facilis dolores nihil libero voluptates deserunt ipsam architecto. Natus distinctio cupiditate, sed. Fugiat earum, magnam nihil natus commodi aspernatur accusamus. Ipsa distinctio libero id impedit sequi, assumenda cupiditate, dolores recusandae quibusdam necessitatibus porro maxime magnam, similique quos autem in modi. Non iure, deleniti sapiente placeat error fugiat quibusdam nobis consequuntur tempora inventore eum, ipsum molestias aliquam, vitae laborum porro impedit dicta ex unde! Veniam labore enim dignissimos, nulla dolorum minus voluptate, voluptatem non temporibus repellat tenetur! Nemo quam beatae sed debitis aliquam voluptatem, exercitationem quod quidem, dignissimos tempore odit dolorem odio iusto in necessitatibus maxime cupiditate impedit facere natus velit. Quisquam, facere. </p><hr>
-	 </div><!-- /col-md-12 -->
-</div><!-- /row -->
-	<!-- col-md-2 -->
-	<div class="col-md-4">
-		 	<center><img src="images/photo.jpg" alt="Photo of West Brown"><br>
-			<p>West Brown</p>
 
-			<p>Phone/Text # <a href="tel: +19102001391"> (910) 200-1391</a></p>
-			<p>Email: <a href="mailto:lawsonsdad@gmail.com">lawsonsdad@gmail.com</a></p>
-			<p>Wilmington, NC  28480</p></center>			
-	</div><!-- /col-md-4 -->
-	<!-- col-md-8 -->
-	<div class="col-md-8">
-		 <center><div id="googleMap" style="width:500px;height:500px;"></div></center>
-	</div><!-- /col-md-8 -->
-</div><!-- /row -->	
+	 <!-- col-md-5 -->
+	 <div class="col-md-5">
+	 	<center><h3>About Us</h3></center>
+
+	 	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod totam molestias, illo sit tempora magnam unde beatae. Repellat consequuntur laborum optio ab adipisci, architecto vitae ducimus iste fugit doloribus, voluptatibus iure totam et corporis inventore mollitia. Iusto fugiat qui commodi eum voluptatem, iste. Adipisci corporis, quod dolorum tempora repellat unde fugit doloribus perspiciatis maiores omnis. Unde excepturi, consectetur. Eum aperiam cupiditate in fugit commodi iure ipsam similique nostrum nisi amet impedit tenetur molestiae voluptatibus perferendis eveniet voluptate optio quidem unde, quisquam omnis recusandae labore. Tempore voluptate ea non distinctio, ipsam ut neque obcaecati ullam quibusdam doloremque eligendi unde! Excepturi quasi eos voluptas eveniet fugiat sit fugit, aperiam voluptatum voluptatem praesentium expedita, veniam quis facilis itaque, natus ad non commodi hic voluptate ratione dicta dolor ipsa rem aspernatur in. Quod suscipit, assumenda hic saepe, voluptas cumque sint sequi veritatis ipsam amet ad officiis ut possimus perspiciatis dolorem necessitatibus praesentium fuga molestias et nulla architecto deserunt, natus. Reiciendis iusto tempora, aspernatur, corporis voluptatum illo ipsa impedit accusamus, perferendis magni inventore. Aperiam facilis deserunt, laborum eveniet, vero blanditiis, rerum consequuntur commodi eius numquam tempore sapiente in voluptate excepturi non delectus maiores quisquam ad. Debitis itaque consectetur voluptatem neque delectus, porro quibusdam atque excepturi! </p>
+	 </div>
+
+	<!-- col-md-7 -->
+	<div class="col-md-7">
+	 	<center><div id="googleMap" style="width:500px;height:500px;"></div></center>
+	</div><!-- /col-md-7 -->
+
+</div><!-- /row -->
 
 
 <script

@@ -11,7 +11,7 @@
 		 </div><!-- /col-md-10 -->
 		 <!-- col-md-2 -->
 		 <div class="col-md-2">
-		 	 <a href="{{ route('posts.create') }}" class="btn btn-lg btn-block btn-primary btn-h1-spacing">Create New Post</a>
+		 	 <a href="{{ route('posts.create') }}" class="btn btn-block btn-primary btn-h1-spacing">Create New Post</a>
 		 </div><!-- /col-md-2 -->
 		 <div class="col-md-12">
 		 	<hr>

@@ -19,10 +19,6 @@ class PagesController extends Controller
     {
     	return view('pages.contact');
     }
-    public function getUploadimage()
-    {
-        return view('pages.uploadimage');
-    }
     public function getImage()
     {
         return view('pages.image');

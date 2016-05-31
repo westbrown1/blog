@@ -35,7 +35,6 @@ Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
 Route::get('about', 'PagesController@getAbout');
 Route::get('contact', 'PagesController@getContact');
 Route::get('image', 'PagesController@getImage');
-Route::get('uploadimage', 'PagesController@getUploadimage');
 Route::get('/', 'PagesController@getIndex');
 Route::resource('posts', 'PostController');
 
