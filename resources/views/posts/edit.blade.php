@@ -2,6 +2,10 @@
 
 @section('title', '| Edit Post')
 
+@section('stylesheets')
+    {!!Html::style('css/select2.min.css')!!}
+@stop
+
 @section('content')
 <!-- row -->
 <div class="row">
@@ -24,6 +28,9 @@
 
     				{{Form::label('category_id', 'Category:')}}
     				{{Form::select('category_id', $categories, null, ['class' => 'form-control'])}}
+
+    				{{Form::label('tags', 'Tags:')}}
+    				{{Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple'])}}
     				
 				 	{{Form::label('body', 'Body:')}}
 					{{Form::textarea('body', null, ['class' => 'form-control'])}}
@@ -56,4 +63,13 @@
 		</div><!-- /col-md-4 -->	
 	{!!Form::close()!!} 
 </div><!-- /row -->
+@stop
+
+@section('scripts')
+    {!!Html::script('js/select2.min.js')!!}
+
+    <script type="text/javascript">
+        $(".select2-multi").select2();
+        $(".select2-multi").select2().val({!! json_encode($post->tags()->getRelatedIds()) !!}).trigger('change');
+    </script>
 @stop

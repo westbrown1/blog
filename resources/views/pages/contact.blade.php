@@ -27,18 +27,19 @@
 	 		 </div><!-- /panel-heading -->
 			<!-- panel-body -->
 			<div class="panel-body">
- 				{!! Form::open(array('route' => 'posts.store')) !!}
-    				{{Form::label('email', 'Email:')}}
-    				{{Form::email('email', null, ['class' => 'form-control'])}}
+ 				<form action="{{url('contact')}} " method="POST"> 
+ 				{{csrf_field()}}
+					<label for="email" name="email">Email:</label>
+					<input type="email" name="email" class="form-control">
 
-    				{{Form::label('password', 'Password:')}}
-    				{{Form::password('password', ['class' => 'form-control'])}}
+					<label for="subject" name="subject">Subject:</label>
+					<input type="text" name="subject" class="form-control">
 
-    				{{Form::label('body', 'Body:')}}
-					{{Form::textarea('body', null, ['class' => 'form-control'])}}
+					<label for="body" name="body">Message:</label>
+					<textarea name="body" placeholder="Enter message here" class="form-control" rows="8"></textarea>			
 
-    				{{Form::submit('Contact Us', ['class' => 'btn btn-primary btn-block', 'style' => 'margin-top:20px;'])}}
-    			{!!Form::close()!!}
+					<button class="btn btn-primary">Send</button>
+    			</form>
 			</div><!-- /panel-body -->
 	 	</div><!-- /panel panel-primary -->		
 	 </div><!-- col-md-7 -->

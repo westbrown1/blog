@@ -23,6 +23,7 @@
           <ul class="dropdown-menu drp-dwn">
             <li><a href="{{route('posts.index')}} ">Posts</a></li>
             <li><a href="{{route('categories.index')}} ">Categories</a></li>
+            <li><a href="{{route('tags.index')}}">Tags</a></li>
             <li><a href="{{ route('logout') }} ">Logout</a></li>
           </ul>
         </li>

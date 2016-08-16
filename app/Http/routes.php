@@ -29,11 +29,16 @@ Route::post('password/reset', 'Auth\PasswordController@reset');
 
 // Categories
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
+Route::resource('tags', 'TagController', ['except' => ['create']]);
+
+// Comments
+Route::post('comments/{post_id}', ['uses' => 'CommentsController@store', 'as' => 'comments.store']);
 
 Route::get('blog/{slug}', ['uses' => 'BlogController@getSingle', 'as' => 'blog.single'])->where('slug', '[\w\d\-\_]+');
 Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
 Route::get('about', 'PagesController@getAbout');
 Route::get('contact', 'PagesController@getContact');
+Route::post('contact', 'PagesController@postContact');
 Route::get('image', 'PagesController@getImage');
 Route::get('/', 'PagesController@getIndex');
 Route::resource('posts', 'PostController');
