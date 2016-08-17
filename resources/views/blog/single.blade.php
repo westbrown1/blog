@@ -7,8 +7,9 @@
 	<div class="row">
 		 	<!-- col-md-8 col-md-offset-2 -->
 		 	<div class="col-md-8 col-md-offset-2">
+		 		 <img src="{{ asset('images/' . $post->image) }}" alt="lawson on surfboard" height="500" width="800" />
 		 		 <h2>{{ $post->title }}</h2>
-		 		 <p>{{ $post->body }}</p>
+		 		 <p>{!! $post->body !!}</p>
 		 		 <hr>
 		 		 <p>Posted In: {{$post->category->name}} </p>
 		 	</div><!-- /col-md-8 col-offset-2 -->

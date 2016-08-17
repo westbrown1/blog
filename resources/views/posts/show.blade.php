@@ -8,7 +8,7 @@
 	<!-- col-md-8 -->
 	<div class="col-md-8">
 		<h3>{{$post->title}} </h3>
-		<p class="lead">{{$post->body}}</p>
+		<p class="lead">{!!$post->body!!}</p>
 		<div class="tags">
 			@foreach ($post->tags as $tag)
 				<span class="label label-default">{{$tag->name}}</span>
