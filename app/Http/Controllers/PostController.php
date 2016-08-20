@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Http\Requests;
-use Purifier;
+use App\Http\Controllers\Controller;
 use App\Post;
 use App\Tag;
-use Session;
 use App\Category;
+use Session;
+use Purifier;
 use Image;
-
+use Storage;
 
 class PostController extends Controller
 {
-    public function __construct()
-    {
+
+    public function __construct() {
         $this->middleware('auth');
     }
     /**
@@ -25,9 +27,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        // create a variable and store all the blog posts in it from the database
-        $posts = Post::orderBy('id', 'desc')->paginate(2);
-        // return a view and pass in the above variable
+        $posts = Post::orderBy('id', 'desc')->paginate(10);
         return view('posts.index')->withPosts($posts);
     }
 
@@ -53,12 +53,14 @@ class PostController extends Controller
     {
         // validate the data
         $this->validate($request, array(
-                'title' => 'required|max:255',
-                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts',
-                'category_id' => 'required|integer',
-                'body' => 'required'
+                'title'         => 'required|max:255',
+                'slug'          => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
+                'category_id'   => 'required|integer',
+                'body'          => 'required',
+                'featured_image' => 'sometimes|image'
             ));
-        // store the data in the database
+
+        // store in the database
         $post = new Post;
 
         $post->title = $request->title;
@@ -66,23 +68,21 @@ class PostController extends Controller
         $post->category_id = $request->category_id;
         $post->body = Purifier::clean($request->body);
 
-        // save our image
-        if($request->hasFile('featured_image')) {
-            $image = $request->file('featured_image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            $location = public_path('images/' . $filename);
-            Image::make($image)->resize(800, 600)->save($location);
+        if ($request->hasFile('featured_image')) {
+          $image = $request->file('featured_image');
+          $filename = time() . '.' . $image->getClientOriginalExtension();
+          $location = public_path('images/' . $filename);
+          Image::make($image)->resize(800, 400)->save($location);
 
-            $post->image = $filename;
+          $post->image = $filename;
         }
 
         $post->save();
 
         $post->tags()->sync($request->tags, false);
 
-        Session::flash('success', 'You have successfully created a new post!');
+        Session::flash('success', 'The blog post was successfully save!');
 
-        // redirect to account page
         return redirect()->route('posts.show', $post->id);
     }
 
@@ -93,7 +93,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id)
-    {   
+    {
         $post = Post::find($id);
         return view('posts.show')->withPost($post);
     }
@@ -106,21 +106,20 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        // find the post in the database and save as a variable
+        // find the post in the database and save as a var
         $post = Post::find($id);
         $categories = Category::all();
-        $cats = [];
-        foreach($categories as $category) {
+        $cats = array();
+        foreach ($categories as $category) {
             $cats[$category->id] = $category->name;
-        }      
+        }
 
         $tags = Tag::all();
-        $tags2 = [];
-        foreach($tags as $tag) {
+        $tags2 = array();
+        foreach ($tags as $tag) {
             $tags2[$tag->id] = $tag->name;
-        }   
-        
-        // return the view and pass in the var we just created
+        }
+        // return the view and pass in the var we previously created
         return view('posts.edit')->withPost($post)->withCategories($cats)->withTags($tags2);
     }
 
@@ -133,24 +132,33 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // validate the data
+        // Validate the data
         $post = Post::find($id);
-        if($request->input('slug') == $post->slug) {
-            $this->validate($request, array(
+
+        $this->validate($request, array(
                 'title' => 'required|max:255',
-                'category_id' => 'required|integer',              
-                'body' => 'required'
-            ));
-        } else {
-            $this->validate($request, array(
-                'title' => 'required|max:255',
-                'slug' => 'required|alpha_dash|min:5|max:255|unique:posts',
+                'slug'  => "required|alpha_dash|min:5|max:255|unique:posts,slug,$id",
                 'category_id' => 'required|integer',
-                'body' => 'required'
+                'body'  => 'required',
+                'featured_image' => 'image'
             ));
-        }
         
-        // store to database
+        if ($request->hasFile('featured_image')) {
+            // add the new photo
+          $image = $request->file('featured_image');
+          $filename = time() . '.' . $image->getClientOriginalExtension();
+          $location = public_path('images/' . $filename);
+          Image::make($image)->resize(800, 400)->save($location);
+          $oldFilename = $post->image;
+          // update the database
+          $post->image = $filename;          
+          // Delete the old photo
+          Storage::delete($oldFilename);
+        }
+        // Save the data to the database
+        $post->save();
+
+        
         $post = Post::find($id);
 
         $post->title = $request->input('title');
@@ -159,16 +167,18 @@ class PostController extends Controller
         $post->body = Purifier::clean($request->input('body'));
 
         $post->save();
-        if(isset($request->tags)) {
+
+        if (isset($request->tags)) {
             $post->tags()->sync($request->tags);
         } else {
-            $post->tags()->sync([]);
-        }        
+            $post->tags()->sync(array());
+        }
+
 
         // set flash data with success message
-        Session::flash('success', 'You have sucessfully edited your post.');
+        Session::flash('success', 'This post was successfully saved.');
 
-        // redirect with flash to posts.show
+        // redirect with flash data to posts.show
         return redirect()->route('posts.show', $post->id);
     }
 
@@ -180,16 +190,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        // find the post
         $post = Post::find($id);
         $post->tags()->detach();
 
-        // delete the item
         $post->delete();
 
-        Session::flash('success', 'Your post has been deleted.');
-
-        // redirect
+        Session::flash('success', 'The post was successfully deleted.');
         return redirect()->route('posts.index');
     }
 }

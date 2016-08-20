@@ -1,3 +1,5 @@
+# This is a Laravel built blog.  It is an example of the functionality of The Laravel Framework.
+
 # Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)

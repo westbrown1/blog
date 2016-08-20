@@ -24,7 +24,7 @@
 
 
 <script
-src="http://maps.googleapis.com/maps/api/js">
+src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDyN-Yeyr8E6vva-bsCzpXV2QEVO00gprk&callback-initMap">
 </script>
 
 <script>
@@ -49,8 +49,6 @@ marker.setMap(map);
 
 google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-</head>
 
-<body>
 <div id="googleMap" style="width:500px;height:380px;"></div>
 @stop

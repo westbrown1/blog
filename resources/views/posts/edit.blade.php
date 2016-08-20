@@ -17,7 +17,7 @@
 @section('content')
 <!-- row -->
 <div class="row">
-	{!!Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT'])!!}
+	{!!Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files' => true])!!}
 		<!-- col-md-8 -->
 		<div class="col-md-8">
 			<!-- panel panel-primary -->
@@ -40,6 +40,9 @@
     				{{Form::label('tags', 'Tags:')}}
     				{{Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple'])}}
     				
+    				{{Form::label('featured_image', 'Update Featured Image:')}}
+    				{{Form::file('featured_image')}}
+
 				 	{{Form::label('body', 'Body:')}}
 					{{Form::textarea('body', null, ['class' => 'form-control'])}}
 				 </div><!-- /panel-body -->
