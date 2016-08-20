@@ -41,7 +41,7 @@ Route::get('comments/{id}/delete', ['uses' => 'CommentsController@delete', 'as' 
 
 
 
-Route::get('blog/{slug}', ['uses' => 'BlogController@getSingle', 'as' => 'blog.single'])->where('slug', '[\w\d\-\_]+');
+Route::get('blog/{slug}', [ 'as' => 'blog.single', 'uses' => 'BlogController@getSingle' ])->where('slug', '[\w\d\-\_]+');
 Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
 Route::get('about', 'PagesController@getAbout');
 Route::get('contact', 'PagesController@getContact');
